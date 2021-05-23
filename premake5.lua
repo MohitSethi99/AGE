@@ -1,4 +1,5 @@
 include "./vendor/premake/premake_customization/solution_items.lua"
+include "Dependencies.lua"
 
 workspace "Arc"
 	architecture "x86_64"
@@ -22,19 +23,6 @@ workspace "Arc"
 	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}";
-
--- Include directories relavtive to root folder (solution directory)
-IncludeDir = {}
-IncludeDir["GLFW"] = "%{wks.location}/Arc/vendor/GLFW/include"
-IncludeDir["Glad"] = "%{wks.location}/Arc/vendor/Glad/include"
-IncludeDir["ImGui"] = "%{wks.location}/Arc/vendor/imgui"
-IncludeDir["glm"] = "%{wks.location}/Arc/vendor/glm"
-IncludeDir["stb_image"] = "%{wks.location}/Arc/vendor/stb_image"
-IncludeDir["entt"] = "%{wks.location}/Arc/vendor/entt/include"
-IncludeDir["yaml_cpp"] = "%{wks.location}/Arc/vendor/yaml-cpp/include"
-IncludeDir["ImGuizmo"] = "%{wks.location}/Arc/vendor/ImGuizmo"
-IncludeDir["Box2D"] = "%{wks.location}/Arc/vendor/box2d/include"
-IncludeDir["Assimp"] = "%{wks.location}/Arc/vendor/assimp/include"
 
 group "Dependencies"
 	include "vendor/premake"

@@ -2,7 +2,7 @@ project "Arc-Editor"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
-	staticruntime "on"
+	staticruntime "off"
 
 	targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
@@ -33,11 +33,14 @@ project "Arc-Editor"
 	filter "system:windows"
 		systemversion "latest"
 
+	filter "system:windows"
+		systemversion "latest"
+		
 	filter "configurations:Debug"
 		defines "ARC_DEBUG"
 		runtime "Debug"
 		symbols "on"
-
+	
 	filter "configurations:Release"
 		defines "ARC_RELEASE"
 		runtime "Release"
@@ -46,4 +49,4 @@ project "Arc-Editor"
 	filter "configurations:Dist"
 		defines "ARC_DIST"
 		runtime "Release"
-        optimize "on"
+		optimize "on"

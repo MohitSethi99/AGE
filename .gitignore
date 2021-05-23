@@ -18,3 +18,8 @@ bin-int/
 *.json
 
 !/Arc-Editor/imgui.ini
+
+# Directories
+Arc/vendor/VulkanSDK
+Arc-Editor/assets/cache
+scripts/__pycache__
