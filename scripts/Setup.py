@@ -1,20 +1,24 @@
 import os
 import subprocess
-import CheckPython
+import platform
 
-# Make sure everything we need is installed
-CheckPython.ValidatePackages()
+from SetupPython import PythonConfiguration as PythonRequirements
 
-import Vulkan
+# Make sure everything we need for the setup is installed
+PythonRequirements.Validate()
 
-# Change from Scripts directory to root
-os.chdir('../')
+from SetupPremake import PremakeConfiguration as PremakeRequirements
+from SetupVulkan import VulkanConfiguration as VulkanRequirements
+os.chdir('./../') # Change from devtools/scripts directory to root
 
-if (not Vulkan.CheckVulkanSDK()):
-    print("Vulkan SDK not installed.")
+premakeInstalled = PremakeRequirements.Validate()
+VulkanRequirements.Validate()
 
-if (not Vulkan.CheckVulkanSDKDebugLibs()):
-    print("Vulkan SDK debug libs not found.")
+if (premakeInstalled):
+    if platform.system() == "Windows":
+        print("\nRunning premake...")
+        subprocess.call([os.path.abspath("./scripts/Win-GenProjects.bat"), "nopause"])
 
-print("Running premake...")
-subprocess.call(["vendor/premake/bin/premake5.exe", "vs2019"])
+    print("\nSetup completed!")
+else:
+    print("Arc Engine requires Premake to generate project files.")
