@@ -5,6 +5,7 @@
 #include "Panels/SceneHierarchyPanel.h"
 #include "Panels/SettingsPanel.h"
 #include "Panels/StatsPanel.h"
+#include "Panels/ContentBrowserPanel.h"
 
 #include "Arc/Renderer/EditorCamera.h"
 
@@ -66,5 +67,6 @@ namespace ArcEngine
 		SceneHierarchyPanel m_SceneHierarchyPanel;
 		SettingsPanel m_SettingsPanel;
 		StatsPanel m_StatsPanel;
+		ContentBrowserPanel m_ContentBrowserPanel;
 	};
 }

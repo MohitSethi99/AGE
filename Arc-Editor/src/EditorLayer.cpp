@@ -216,6 +216,7 @@ namespace ArcEngine
 		m_SceneHierarchyPanel.OnImGuiRender();
 		m_SettingsPanel.OnImGuiRender();
 		m_StatsPanel.OnImGuiRender();
+		m_ContentBrowserPanel.OnImGuiRender();
 		ImGuiConsole::OnImGuiRender();
 
 		
