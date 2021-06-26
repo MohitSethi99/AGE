@@ -3,19 +3,19 @@
 	url = https://github.com/gabime/spdlog.git
 [submodule "Arc/vendor/GLFW"]
 	path = Arc/vendor/GLFW
-	url = https://github.com/TheCherno/glfw
+	url = https://github.com/MohitSethi99/glfw.git
 [submodule "Arc/vendor/imgui"]
 	path = Arc/vendor/imgui
-	url = https://github.com/TheCherno/imgui
+	url = https://github.com/MohitSethi99/imgui.git
 [submodule "Arc/vendor/glm"]
 	path = Arc/vendor/glm
 	url = https://github.com/g-truc/glm.git
 [submodule "Arc/vendor/yaml-cpp"]
 	path = Arc/vendor/yaml-cpp
-	url = https://github.com/TheCherno/yaml-cpp.git
+	url = https://github.com/MohitSethi99/yaml-cpp.git
 [submodule "Arc/vendor/ImGuizmo"]
 	path = Arc/vendor/ImGuizmo
-	url = https://github.com/TheCherno/ImGuizmo.git
+	url = https://github.com/MohitSethi99/ImGuizmo.git
 [submodule "Arc/vendor/box2d"]
 	path = Arc/vendor/box2d
 	url = https://github.com/MohitSethi99/box2d.git
