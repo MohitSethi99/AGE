@@ -9,6 +9,7 @@ bin-int/
 *.vcxproj.filters
 *.vcxproj.user
 *.ini
+*.csproj
 
 # GLAD binaries
 **/Glad/bin/

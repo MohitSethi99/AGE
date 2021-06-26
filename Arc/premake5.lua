@@ -43,7 +43,8 @@ project "Arc"
 		"%{IncludeDir.ImGuizmo}",
 		"%{IncludeDir.Box2D}",
 		"%{IncludeDir.Assimp}",
-		"%{IncludeDir.VulkanSDK}"
+		"%{IncludeDir.VulkanSDK}",
+		"%{IncludeDir.mono}"
 	}
 
 	links
@@ -54,7 +55,8 @@ project "Arc"
 		"yaml-cpp",
 		"box2d",
 		"assimp",
-		"opengl32.lib"
+		"opengl32.lib",
+		"%{LibraryDir.mono}"
 	}
 
 	filter "files:vendor/ImGuizmo/**.cpp"

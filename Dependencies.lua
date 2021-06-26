@@ -18,10 +18,12 @@ IncludeDir["Assimp"] = "%{wks.location}/Arc/vendor/assimp/include"
 IncludeDir["shaderc"] = "%{wks.location}/Arc/vendor/shaderc/include"
 IncludeDir["SPIRV_Cross"] = "%{wks.location}/Arc/vendor/SPIRV-Cross"
 IncludeDir["VulkanSDK"] = "%{VULKAN_SDK}/Include"
+IncludeDir["mono"] = "%{wks.location}/Arc/vendor/mono"
 
 LibraryDir = {}
 LibraryDir["VulkanSDK"] = "%{VULKAN_SDK}/Lib"
 LibraryDir["VulkanSDK_Debug"] = "%{wks.location}/Arc/vendor/VulkanSDK/Lib"
+LibraryDir["mono"] = "%{wks.location}/Arc/vendor/mono/lib/Debug/mono-2.0-sgen.lib"
 
 Library = {}
 Library["Vulkan"] = "%{LibraryDir.VulkanSDK}/vulkan-1.lib"
