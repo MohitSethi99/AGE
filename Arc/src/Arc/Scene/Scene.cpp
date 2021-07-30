@@ -13,6 +13,8 @@
 #include "Arc/Renderer/Renderer.h"
 #include "Arc/Renderer/SceneRenderer.h"
 
+#include "Arc/Scripting/ScriptEngine.h"
+
 namespace ArcEngine
 {
 	Scene::Scene()
@@ -59,6 +61,7 @@ namespace ArcEngine
 		CopyComponent<SkylightComponent>(target->m_Registry, m_Registry, enttMap);
 		CopyComponent<LightComponent>(target->m_Registry, m_Registry, enttMap);
 		CopyComponent<NativeScriptComponent>(target->m_Registry, m_Registry, enttMap);
+		CopyComponent<BehaviourComponent>(target->m_Registry, m_Registry, enttMap);
 	}
 
 	Entity Scene::CreateEntity(const std::string& name)
@@ -182,7 +185,7 @@ namespace ArcEngine
 	void Scene::OnRuntimeStart()
 	{
 		Physics2D::Init();
-
+		
 		{
 			auto view = m_Registry.view<TransformComponent, Rigidbody2DComponent>();
 			for (auto entity : view)
@@ -217,6 +220,15 @@ namespace ArcEngine
 				circleCollider2d.StartSimulation(rigidbody2d.Body2D);
 			}
 		}
+
+		{
+			auto view = m_Registry.view<BehaviourComponent>();
+			for (auto entity : view)
+			{
+				auto behaviour = view.get<BehaviourComponent>(entity);
+				ScriptEngine::OnInit(behaviour, (uint32_t) entity, 0);
+			}
+		}
 	}
 
 	void Scene::OnRuntimeEnd()
@@ -239,6 +251,12 @@ namespace ArcEngine
 
 				nsc.Instance->OnUpdate(ts);
 			});
+
+			auto view = m_Registry.view<BehaviourComponent>();
+			for (auto entity : view)
+			{
+				ScriptEngine::OnUpdate((uint32_t) entity, ts);
+			}
 		}
 		
 		// Render 2D
@@ -450,6 +468,11 @@ namespace ArcEngine
 
 	template<>
 	void Scene::OnComponentAdded<MeshComponent>(Entity entity, MeshComponent& component)
+	{
+	}
+	
+	template<>
+	void Scene::OnComponentAdded<BehaviourComponent>(Entity entity, BehaviourComponent& component)
 	{
 	}
 }

@@ -18,7 +18,7 @@ IncludeDir["Assimp"] = "%{wks.location}/Arc/vendor/assimp/include"
 IncludeDir["shaderc"] = "%{wks.location}/Arc/vendor/shaderc/include"
 IncludeDir["SPIRV_Cross"] = "%{wks.location}/Arc/vendor/SPIRV-Cross"
 IncludeDir["VulkanSDK"] = "%{VULKAN_SDK}/Include"
-IncludeDir["mono"] = "%{wks.location}/Arc/vendor/mono"
+IncludeDir["mono"] = "%{wks.location}/Arc/vendor/mono/include"
 
 LibraryDir = {}
 LibraryDir["VulkanSDK"] = "%{VULKAN_SDK}/Lib"

@@ -5,6 +5,8 @@
 
 #include <GLFW/glfw3.h>
 
+#include "Arc/Scripting/ScriptEngine.h"
+
 namespace ArcEngine
 {
 	Application* Application::s_Instance = nullptr;
@@ -23,6 +25,8 @@ namespace ArcEngine
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
+
+		ScriptEngine::Init("assets/scripts/ArcSharp.dll");
 	}
 
 	Application::~Application()
@@ -103,6 +107,8 @@ namespace ArcEngine
 			
 			m_Window->OnUpdate();
 		}
+
+		ScriptEngine::Shutdown();
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e)

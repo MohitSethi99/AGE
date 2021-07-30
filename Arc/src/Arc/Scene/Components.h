@@ -291,4 +291,11 @@ namespace ArcEngine
 		{
 		}
 	};
+
+	struct BehaviourComponent
+	{
+		bool Initialized = false;
+		char BufferName[256];
+		std::string ModuleName = "";
+	};
 }

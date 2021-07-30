@@ -22,7 +22,8 @@ project "Arc-Editor"
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.ImGuizmo}",
 		"%{IncludeDir.Box2D}",
-		"%{IncludeDir.Assimp}"
+		"%{IncludeDir.Assimp}",
+		"%{IncludeDir.mono}"
 	}
 
 	links

@@ -5,6 +5,7 @@
 #include "Arc/Utils/PlatformUtils.h"
 
 #include <glm/gtc/type_ptr.hpp>
+#include "Arc/Scripting/ScriptEngine.h"
 
 #include <imgui/imgui.h>
 #include <imgui/imgui_internal.h>
@@ -615,6 +616,12 @@ namespace ArcEngine
 					ARC_CORE_WARN("This entity already has the Mesh Component!");
 				ImGui::CloseCurrentPopup();
 			}
+
+			if (ImGui::MenuItem("Behaviour"))
+			{
+				entity.AddComponent<BehaviourComponent>();
+				ImGui::CloseCurrentPopup();
+			}
 			
 			ImGui::EndPopup();
 		}
@@ -987,6 +994,86 @@ namespace ArcEngine
 					ImGui::TreePop();
 				}
 			}
+		});
+
+		DrawComponent<BehaviourComponent>("Behaviour Component", entity, [](Entity& e, BehaviourComponent& component)
+		{
+			struct Test
+			{
+				static int Callback(ImGuiInputTextCallbackData* data)
+				{
+					ARC_CORE_TRACE("ScriptName: {0}", data->Buf);
+					return 0;
+				}
+			};
+
+			ImGui::Text("Script");
+			
+			if (component.Initialized)
+				ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(ImColor(0, 255, 0)));
+			else
+				ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(ImColor(255, 0, 0)));
+			
+			if (ImGui::InputText("Input", component.BufferName, 256, ImGuiInputTextFlags_CallbackCharFilter, Test::Callback))
+			{
+				component.ModuleName = component.BufferName;
+				component.Initialized = ScriptEngine::HasClass(component);
+			}
+
+			ImGui::PopStyleColor();
+
+			/*
+			if (ImGui::TreeNodeEx((void*) ((uint32_t) e | typeid(BehaviourComponent).hash_code()), ImGuiTreeNodeFlags_DefaultOpen, "Script"))
+			{
+				// Public Fields
+				auto& fieldMap = ScriptEngine::GetFieldMap();
+				if (fieldMap.find(sc.ModuleName) != fieldMap.end())
+				{
+					auto& publicFields = fieldMap.at(sc.ModuleName);
+					for (auto& field : publicFields)
+					{
+						switch (field.Type)
+						{
+							case FieldType::Int:
+							{
+								int value = field.GetValue<int>();
+								if (Property(field.Name.c_str(), value))
+								{
+									field.SetValue(value);
+								}
+								break;
+							}
+							case FieldType::Float:
+							{
+								float value = field.GetValue<float>();
+								if (Property(field.Name.c_str(), value, 0.2f))
+								{
+									field.SetValue(value);
+								}
+								break;
+							}
+							case FieldType::Vec2:
+							{
+								glm::vec2 value = field.GetValue<glm::vec2>();
+								if (Property(field.Name.c_str(), value, 0.2f))
+								{
+									field.SetValue(value);
+								}
+								break;
+							}
+						}
+					}
+				}
+
+				EndPropertyGrid();
+				if (ImGui::Button("Run Script"))
+				{
+					ScriptEngine::OnCreateEntity(entity);
+				}
+				ImGui::TreePop();
+				ImGui::Separator();
+			}
+			*/
 		});
 	}
 }
